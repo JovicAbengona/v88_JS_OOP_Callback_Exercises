@@ -1,0 +1,354 @@
+1.  function displayNameCountry(lists){
+        for(let student of lists){
+            console.log(`Name: ${student.name}, Country: ${student.country}`);
+        }
+    }
+
+    let students = [
+        {name: 'Remy', country: 'Korea'},
+        {name: 'Chuck', country: 'China'},
+        {name: 'Osmund', country: 'U.S.A.'},
+        {name: 'Nicole', country: 'South Africa'},
+        {name: 'Boris', country: 'France'},
+        {name: 'John', country: 'Philippines'},
+        {name: 'Michael', country: 'Ukraine'}
+    ];
+
+2.  let employee_count = 1;
+    let manager_count = 1;
+    let result = "";
+
+    result += "EMPLOYEES ";
+    for(let employee of users.employees){
+        result += `${employee_count} - ${employee.last_name.toUpperCase()}, ${employee.first_name.toUpperCase()} - ${employee.first_name.length + employee.last_name.length} `;
+        employee_count++;
+    }
+
+    result += "MANAGERS ";
+    for(let manager of users.managers){
+        result += `${manager_count} - ${manager.last_name.toUpperCase()}, ${manager.first_name.toUpperCase()} - ${manager.first_name.length + manager.last_name.length} `;
+        manager_count++;
+    }
+
+    console.log(result);
+
+3.  let student = function(name) {
+        return {
+            name: name,
+            hp: 10,
+            int: 10,
+            study: function(){
+                this.hp -= 1;
+                this.int += 1;
+            },
+            report: function(){
+                return `${this.name} has hp of ${this.hp} and int of ${this.int}`;
+            }
+        }
+    }
+
+    let student1 = student('Marcus');
+    let student2 = student('John');
+
+    student1.study();  //decrease hp by 1 and increase int by 1
+    student1.study();  //decrease hp by 1 and increase int by 1
+
+    student1.report();  //have it return 'Marcus has hp of 8 and int of 12'
+    student2.report();  //have it return 'John has hp of 10 and int of 10'
+
+4.  let Student = function(name) {
+        this.name = name;
+        this.hp = 10;
+        this.int = 10;
+        this.study = function(){
+            this.hp -= 1;
+            this.int += 1;
+        }
+        this.report = function(){
+            return `${this.name} has hp of ${this.hp} and int of ${this.int}`;   
+        }
+    }
+
+    let student1 = new Student('Marcus');
+    let student2 = new Student('John');
+
+    student1.study();  //decrease hp by 1 and increase int by 1
+    student1.study();  //decrease hp by 1 and increase int by 1
+
+    student1.report();  //have it RETURN 'Marcus has hp of 8 and int of 12'
+    student2.report();  //have it RETURN 'John has hp of 10 and int of 10'
+
+5.  let Student = function(name) {
+        this.name = name;
+        this.hp = 10;
+        this.int = 10;
+    }
+
+    Student.prototype.study = function(){
+        this.hp -= 1;
+        this.int += 1;
+    }
+
+    Student.prototype.report = function(){
+        return `${this.name} has hp of ${this.hp} and int of ${this.int}`;   
+    }
+
+    let student1 = new Student('Marcus');
+    let student2 = new Student('John');
+
+    student1.study();  //decrease hp by 1 and increase int by 1
+    student1.study();  //decrease hp by 1 and increase int by 1
+
+    student1.report();  //have it log 'Marcus has hp of 8 and int of 12'
+    student2.report();  //have it log 'John has hp of 10 and int of 10'
+
+6.  class Student {
+        constructor(name){
+            this.name = name;
+            this.hp = 10;
+            this.int = 10;
+        }
+
+        study(){
+            this.hp -= 1;
+            this.int += 1;
+        }
+
+        report(){
+            return `${this.name} has hp of ${this.hp} and int of ${this.int}`;
+        }
+    }
+
+    let student1 = new Student('Marcus');
+    let student2 = new Student('John');
+
+    student1.study();  //decrease hp by 1 and increase int by 1
+    student1.study();  //decrease hp by 1 and increase int by 1
+
+    student1.report();  //have it log 'Marcus has hp of 8 and int of 12'
+    student2.report();  //have it log 'John has hp of 10 and int of 10'
+
+7.  function filter(arr, condition){
+        let result = [];
+        for(let x = 0; x < arr.length; x++){
+            (condition(arr[x])) ? result.push(arr[x]) : null;
+        }
+
+        return result;
+    }
+
+8.  function map(arr, callback){
+        for(let x = 0; x < arr.length; x++)
+            arr[x] = callback(arr[x]);
+        
+        return arr;
+    }
+
+9.  var _ = {
+        map: function(arr, callback) {
+            for(let x = 0; x < arr.length; x++)
+                arr[x] = callback(arr[x]);
+
+            return arr;
+        },
+        reduce: function(arr, callback, memo) { 
+            let num = 0;
+            for(let x = 0; x < arr.length; x++)
+                num += arr[x];
+
+            return callback(memo, num);
+        },
+        find: function(arr, callback) {   
+            for(let x = 0; x < arr.length; x++){
+                if(callback(arr[x]))
+                    return arr[x];
+            }
+        },
+        filter: function(arr, callback) {
+            let result = [];
+            for(let x = 0; x < arr.length; x++){
+                if(callback(arr[x]))
+                    result.push(arr[x]);
+            }
+
+            return result;
+        }
+    }
+    // you just created a library with 5 methods!
+
+    _.map([1,2,3], function(num){ return num*3; }); //should return [3,6,9]
+
+    _.reduce([1,2,3], function(memo, num){ return memo+num; }, 0); // should return 6
+    _.reduce([1,2,3], function(memo, num) { return memo+num; }, 5); //should return 11
+    _.reduce([1,2,3], function(memo, num) { return memo*num; }, 2); //should return 12
+
+    _.find([1,2,3,4,5,6], function(num) { return num%2 == 0; }); // should return 2
+
+    _.filter([1,2,3,4,5,6], function(num) { return num%2 == 0; }); // should return [2,4,6]
+
+10. class Underscore {
+        groupBy(arr, callback){
+            let result = {};
+            
+            for(let x = 0; x < arr.length; x++){
+                if(result[callback(arr[x])] == null)
+                    result[callback(arr[x])] = [];
+                
+                if(callback(arr[x]))
+                    result[callback(arr[x])].push(arr[x]);
+            }
+            
+            return result;
+        }
+
+        countBy(arr, callback){
+            let result = {};
+            
+            for(let x = 0; x < arr.length; x++){
+                if(result[callback(arr[x])] == null)
+                    result[callback(arr[x])] = 0;
+                    
+                result[callback(arr[x])] += 1;
+            }
+            
+            return result;
+        }
+    }
+
+    const _ = new Underscore();
+
+11. function library(){
+        return result = {
+            add: function(...args){
+                let sum = 0
+                for(let x of args)
+                    sum += x;
+                    
+                return sum
+            }
+        }
+    }
+
+    var $ = library();
+
+12. class Library{
+        constructor(base){
+            this.base = base;
+        }
+        
+        add(...args){
+            for(let num of args)
+                this.base += num;
+            return this.base;
+        }
+    }
+
+    $ = new Library(10);    // initialize the base as 10
+    var x = $.add(3,5);     // x should be 18
+    var y = $.add(5,10);    // y should be 33
+    var z = $.add(10);  
+
+13. class Library {
+        constructor(base){    
+            this.result = base;
+        }
+        
+        add(...args){
+            for(let num of args)
+                this.result += num;
+                
+            return this;
+        }
+        
+        subtract(...args){
+            for(let num of args)
+                this.result -= num;
+                
+            return this;
+        }
+    }
+
+    $ = new Library(10);
+
+14. 
+
+15. const sum = (a, b) => {
+        return a + b;    
+    }
+
+    const multiple = (a, factor = 10) => {
+        return a * factor;    
+    }
+
+    const reduce = (list, callback) => {
+        let total = 0;
+        for(let x = 0; x < list.length; x++){
+            total += callback(total, list[x]);
+        }
+        
+        return total;
+    }
+
+16. class World {
+        constructor(num){
+            this.cities = [];
+            this.add_city(undefined, num);
+        } 
+
+        add_city(city, num = 1){
+            for(let x = 1; x <= num; x++){
+                this.cities.push(new City(city));
+            }
+            return this.cities;
+        }
+
+        random_city(){
+            return this.cities[Math.floor(Math.floor(Math.random() * ((this.cities.length - 1) - 0 + 1)) + 0)]; 
+        }
+
+        total_cities(){
+            return this.cities.length;
+        }
+    }
+
+    class City {
+        constructor(name = this.random_name()){
+            this.name = name;
+            this.citizens = [];
+            this.add_citizen();
+        }
+
+        random_name(){
+            let name = "";
+            for(let x = 1; x <= 5; x++){
+                name += String.fromCharCode(Math.floor(Math.random() * (122 - 97 + 1)) + 97);
+            }
+            
+            return name;
+        }
+
+        add_citizen(){
+            this.citizens.push(new Citizen());
+        }
+    }
+
+    class Citizen {
+        constructor(){
+            this.age = Math.floor(Math.random() * 100);
+        }
+    }
+
+    //create a world with 100 cities
+    let world = new World(100);
+
+    //adds a new city called 'hackerhero'
+    world.add_city('hackerhero');
+
+    //should pull out a random city object within the world and log its value
+    console.log('Random city name: ', world.random_city().name);
+
+    //should pull out a random city object within the world and log its value
+    console.log('Age of first citizen in another random city: ',  world.random_city().citizens[0]);
+
+    //should log 101 as there are 101  cities now
+    console.log('# of Cities: ', world.total_cities());
